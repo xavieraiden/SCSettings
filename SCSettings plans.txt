@@ -1,0 +1,6 @@
+Integrate comments from JSON file into gui.
+	
+	Print out the whole json file and replace data entries with text boxes? (Probably easier?)
+	Include Comments?
+
+MAKE IT LOOK NOT LIKE SHIT

@@ -7,3 +7,8 @@ Make it not look like hot trash (Optional)
 
 	Using Kivy Module (Apparently designed for touchscreens though)
 	PyQt5 (Might be easier?)
+
+Improve search bar
+
+	Only display content that has the search term instead of greying everything else out (Probably hard, but best approach)
+	Do what most text editors do and add the ability to quickly switch between entries that contain search terms (Probably easier)

@@ -1,0 +1,9 @@
+Integrate comments from JSON file into gui.
+	
+	Print out the whole json file and replace data entries with text boxes? (Scan for :, for start of data entry, then scan for comma for end of data entry, then just replace the data entry print in the GUI with a text box?)
+	Include Comments?
+
+Make it not look like hot trash (Optional)
+
+	Using Kivy Module (Apparently designed for touchscreens though)
+	PyQt5 (Might be easier?)

@@ -28,6 +28,21 @@ def debounce(wait):
         return debounced
     return decorator
 
+def highlight_text(label_text):
+    filecontentstext.tag_remove("highlight", "1.0", tk.END)
+    index = filecontentstext.search(label_text, "1.0", tk.END)
+    if index != "":
+        filecontentstext.see(index)
+        line_end = filecontentstext.index(f"{index} lineend")
+        filecontentstext.tag_add("highlight", index, line_end)
+        filecontentstext.tag_config("highlight", foreground="yellow")
+
+def create_trace_function(label_text, bool_var):
+    def trace_function(*args):
+        update_filecontents_bool(label_text, bool_var)
+        highlight_text(label_text)
+    return trace_function
+
 def readfile():
     if filecontentstext.cget('state') == 'disabled':  # If the text widget is disabled
         filecontentstext.config(state='normal', fg='white')
@@ -36,7 +51,7 @@ def readfile():
     with open(file_path, 'r') as file:  # Open the file
         filecontents = file.read()  # Read the file
     filecontentstext.insert(tk.END, filecontents)  # Insert the file contents into the text widget
-    filecontentstext.config(state='disabled', fg='gray')  # Disable the text widget and set the text color to gray
+    filecontentstext.config(state='disabled', fg='white')  # Disable the text widget and set the text color to gray
     textboxlist()
         
 def textboxlist():
@@ -71,6 +86,7 @@ def textboxlist():
     labels = []
     row = 0
     for label_text, match in matches:
+        filecontentstext.tag_add(label_text, "1.0", tk.END)  # Add a tag to the inserted text
         text_var = tk.StringVar()
         text_var.set(match)
         label = ttk.Label(master=scrollable_frame, text=label_text)
@@ -81,12 +97,13 @@ def textboxlist():
             bool_var.set(match.lower() == 'true')
             bool_selector = ttk.Checkbutton(master=scrollable_frame, variable=bool_var)
             bool_selector.grid(row=row, column=1, pady=5)  # Add the bool selector to the grid with vertical spacing of 5
-            bool_var.trace("w", lambda *args, label_text=label_text, bool_var=bool_var: update_filecontents_bool(label_text, bool_var))
+            bool_var.trace("w", create_trace_function(label_text, bool_var))
             labels.append((label, bool_selector))
         else:
             textbox = ttk.Entry(master=scrollable_frame, textvariable=text_var, width=10)
             textbox.label_text = label_text
             textbox.grid(row=row, column=1, pady=5)
+            textbox.bind('<FocusIn>', lambda e, label_text=label_text: highlight_text(label_text))  # Bind the function to the event
             save_button = ttk.Button(master=scrollable_frame, text="Save", command=lambda label_text=label_text, text_var=text_var: update_filecontents_text(label_text, text_var))
             save_button.grid(row=row, column=2, pady=5)
             labels.append((label, textbox, save_button))

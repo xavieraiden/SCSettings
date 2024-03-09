@@ -1,11 +1,15 @@
 # SCSettings
 A tool for easier manipulation of Starsectors settings.json file (Or really any other)
-# Back up your shit before using this
-I wrote this in a not fully awake state so I barely know how this even works (Forgot to comment it like a dumbass).
+# Back up your settings.json before using this (just in case)
+This probably isn't amazingly stable, and might have issues on your machine, just to be safe y'know?
 
-## How I think this works
-Given that the settings.json file is formatted in a specific way, we can look for the Colon that precedes a setting we can change, but we also know that a comma always terminates it. So using that information we know that any piece of text between a Comma and a Colon is a data entry that we can change. This program basically just scans any JSON file you give it for those two things, and makes a list of all of them that you can change inside a GUI.
+# It looks better now!
+Auto scrolling and highlighting when searching for stuff
 
-Literally just the rest of it is GUI, sorting, displaying and saving stuff (I forgor how it works).
+Also, Themes!!!
 
-![image](https://github.com/xavieraiden/SCSettings/assets/45552520/df3a7155-e821-4529-b555-0cdb5d5f2eb6)
+![image](https://github.com/xavieraiden/SCSettings/assets/45552520/d4663a99-cc7f-49ba-9193-fbfa0110173a)
+![image](https://github.com/xavieraiden/SCSettings/assets/45552520/56817840-fd68-4641-a8da-ebfc70831fc9)
+![image](https://github.com/xavieraiden/SCSettings/assets/45552520/f906ac69-0550-4206-8951-e6a6a63bf170)
+
+
